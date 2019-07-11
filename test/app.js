@@ -75,7 +75,7 @@ describe('app', () => {
 
   it('config with test command options string: should run test', () => {
     if (!process.env.CI) {
-      assert(pathExists('./allFiredEvents') === false, 'should start without: events log');
+      assert(pathExists('./.solidity_coverage/.all_events') === false, 'should start without: events log');
       const testConfig = Object.assign({}, config);
 
       testConfig.testCommand = 'mocha --timeout 5000';
@@ -94,7 +94,7 @@ describe('app', () => {
 
   it('config racing test command: should run test after testrpc has started', () => {
     if (!process.env.CI) {
-      assert(pathExists('./allFiredEvents') === false, 'should start without: events log');
+      assert(pathExists('./.solidity_coverage/.all_events') === false, 'should start without: events log');
       const testConfig = Object.assign({}, config);
 
       testConfig.testCommand = 'node ../test/util/mockTestCommand.js';

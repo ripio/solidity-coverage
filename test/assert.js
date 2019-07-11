@@ -15,7 +15,7 @@ describe('asserts and requires', () => {
     const contract = util.getCode('assert/Assert.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', [true]).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -39,7 +39,7 @@ describe('asserts and requires', () => {
     const contract = util.getCode('assert/Assert.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', [false]).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -63,7 +63,7 @@ describe('asserts and requires', () => {
     const contract = util.getCode('assert/RequireMultiline.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', [true, true, true]).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -87,7 +87,7 @@ describe('asserts and requires', () => {
     const contract = util.getCode('assert/RequireMultiline.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', [true, true, false]).then(events => {
       const mapping = coverage.generate(events, pathPrefix);

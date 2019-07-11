@@ -15,7 +15,7 @@ describe('if, else, and else if statements', () => {
     const contract = util.getCode('if/if-with-brackets.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     // Runs: a(1) => if (x == 1) { x = 3; }
     vm.execute(info.contract, 'a', [1]).then(events => {
@@ -41,7 +41,7 @@ describe('if, else, and else if statements', () => {
     const contract = util.getCode('if/if-no-brackets.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     // Same results as previous test
     vm.execute(info.contract, 'a', [1]).then(events => {
@@ -66,7 +66,7 @@ describe('if, else, and else if statements', () => {
     const contract = util.getCode('if/if-with-brackets-multiline.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     // Runs: a(1) => if (x == 1){\n x = 3; }
     vm.execute(info.contract, 'a', [1]).then(events => {
@@ -92,7 +92,7 @@ describe('if, else, and else if statements', () => {
     const contract = util.getCode('if/if-no-brackets-multiline.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
     // Same results as previous test
     vm.execute(info.contract, 'a', [1]).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -116,7 +116,7 @@ describe('if, else, and else if statements', () => {
     const contract = util.getCode('if/if-with-brackets.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     // Runs: a(2) => if (x == 1) { x = 3; }
     vm.execute(info.contract, 'a', [2]).then(events => {
@@ -142,7 +142,7 @@ describe('if, else, and else if statements', () => {
     const contract = util.getCode('if/else-with-brackets.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', [2]).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -166,7 +166,7 @@ describe('if, else, and else if statements', () => {
     const contract = util.getCode('if/else-without-brackets.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', [2]).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -190,7 +190,7 @@ describe('if, else, and else if statements', () => {
     const contract = util.getCode('if/nested-if-missing-else.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
     vm.execute(info.contract, 'a', [2, 3, 3]).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
       assert.deepEqual(mapping[filePath].l, {

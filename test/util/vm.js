@@ -119,9 +119,9 @@ function callMethod(vm, abi, address, functionName, args) {
       tx,
     }, (err, results) => {
       try {
-        const events = fs.readFileSync('./allFiredEvents').toString().split('\n');
+        const events = fs.readFileSync('./.solidity_coverage/.all_events').toString().split('\n');
         events.pop();
-        shell.rm('./allFiredEvents');
+        shell.rm('./.solidity_coverage/.all_events');
         resolve(events);
       } catch (e) {
         resolve([]);

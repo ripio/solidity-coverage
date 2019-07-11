@@ -1,5 +1,5 @@
 allFiredEvents
-scTopics
+.solidity_coverage/
 scDebugLog
 coverage.json
 coverage/

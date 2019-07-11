@@ -18,6 +18,6 @@ request({
     console.error(error);
     process.exit(1);
   }
-  fs.writeFileSync('../allFiredEvents', JSON.stringify(fakeEvent) + '\n');
+  fs.writeFileSync('../.solidity_coverage/.all_events', JSON.stringify(fakeEvent) + '\n');
   process.exit(0);
 });

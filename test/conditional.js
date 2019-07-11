@@ -16,7 +16,7 @@ describe.skip('conditional statements', () => {
     const info = getInstrumentedVersion(contract, filePath);
     console.log(info.contract)
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -40,7 +40,7 @@ describe.skip('conditional statements', () => {
     const contract = util.getCode('conditional/sameline-alternate.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -64,7 +64,7 @@ describe.skip('conditional statements', () => {
     const contract = util.getCode('conditional/multiline-consequent.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -88,7 +88,7 @@ describe.skip('conditional statements', () => {
     const contract = util.getCode('conditional/multiline-alternate.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -112,7 +112,7 @@ describe.skip('conditional statements', () => {
     const contract = util.getCode('conditional/declarative-exp-assignment-alternate.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     // Runs bool z = (x) ? false : true;
     vm.execute(info.contract, 'a', []).then(events => {
@@ -137,7 +137,7 @@ describe.skip('conditional statements', () => {
     const contract = util.getCode('conditional/identifier-assignment-alternate.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     // Runs z = (x) ? false : true;
     vm.execute(info.contract, 'a', []).then(events => {
@@ -162,7 +162,7 @@ describe.skip('conditional statements', () => {
     const contract = util.getCode('conditional/mapping-assignment.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -190,7 +190,7 @@ describe.skip('conditional statements', () => {
     const contract = util.getCode('conditional/variable-decl-assignment-alternate.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
     // Runs var z = (x) ? y = false : y = false;
     vm.execute(info.contract, 'a', []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);

@@ -17,7 +17,7 @@ const fakeEvent = {"address":"6d6cf716c2a7672047e15a255d4c9624db60f215","topics"
 describe('Test uses mocha', () => {
   it('should run "mocha --timeout 5000" successfully', done => {
     setTimeout(() => {
-      fs.writeFileSync('./../allFiredEvents', JSON.stringify(fakeEvent) + '\n');
+      fs.writeFileSync('./../.solidity_coverage/.all_events', JSON.stringify(fakeEvent) + '\n');
       done();
     }, 4000);
   });

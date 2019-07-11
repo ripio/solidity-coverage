@@ -15,7 +15,7 @@ describe('for and while statements', () => {
     const contract = util.getCode('loops/for-with-brackets.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     // Runs: a() => for(var x = 1; x < 10; x++){\n sha3(x);\n }
     vm.execute(info.contract, 'a', []).then(events => {
@@ -38,7 +38,7 @@ describe('for and while statements', () => {
     const contract = util.getCode('loops/for-no-brackets.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     // Runs: a() => for(var x = 1; x < 10; x++)\n sha3(x);\n
     vm.execute(info.contract, 'a', []).then(events => {
@@ -61,7 +61,7 @@ describe('for and while statements', () => {
     const contract = util.getCode('loops/while-with-brackets.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     // Runs: a() => var t = true;\n while(t){\n t = false;\n }
     vm.execute(info.contract, 'a', []).then(events => {
@@ -84,7 +84,7 @@ describe('for and while statements', () => {
     const contract = util.getCode('loops/while-no-brackets.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     // Runs: a() => var t = true;\n while(t)\n t = false;\n
     vm.execute(info.contract, 'a', []).then(events => {

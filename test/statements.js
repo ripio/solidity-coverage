@@ -84,7 +84,7 @@ describe('generic statements', () => {
     const contract = util.getCode('statements/emit-coverage.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -106,7 +106,7 @@ describe('generic statements', () => {
     const contract = util.getCode('statements/post-close-brace.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', [1]).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -130,7 +130,7 @@ describe('generic statements', () => {
     const contract = util.getCode('statements/library.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'not', []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -152,7 +152,7 @@ describe('generic statements', () => {
     const contract = util.getCode('statements/tuple.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -174,7 +174,7 @@ describe('generic statements', () => {
     const contract = util.getCode('statements/empty-contract-body.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, null, []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);

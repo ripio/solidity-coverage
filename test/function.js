@@ -70,7 +70,7 @@ describe('function declarations', () => {
     const contract = util.getCode('function/function-call.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -93,7 +93,7 @@ describe('function declarations', () => {
     const contract = util.getCode('function/constructor-keyword.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
 
     vm.execute(info.contract, 'a', []).then(events => {
       const mapping = coverage.generate(events, pathPrefix);
@@ -116,7 +116,7 @@ describe('function declarations', () => {
     const contract = util.getCode('function/chainable.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
     // We try and call a contract at an address where it doesn't exist and the VM
     // throws, but we can verify line / statement / fn coverage is getting mapped.
     vm.execute(info.contract, 'a', []).then(events => {
@@ -140,7 +140,7 @@ describe('function declarations', () => {
     const contract = util.getCode('function/chainable-value.sol');
     const info = getInstrumentedVersion(contract, filePath);
     const coverage = new CoverageMap();
-    coverage.addContract(info, filePath);
+    coverage.addContract(info, filePath, './.solidity_coverage/.source_topics');
     // The vm runs out of gas here - but we can verify line / statement / fn
     // coverage is getting mapped.
     vm.execute(info.contract, 'a', []).then(events => {
