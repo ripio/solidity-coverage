@@ -1,9 +1,9 @@
 {
   "name": "rp-solidity-coverage",
-  "version": "0.5.12",
+  "version": "0.5.13",
   "description": "",
   "bin": {
-    "solidity-coverage": "./bin/exec.js"
+    "rp-solidity-coverage": "./bin/exec.js"
   },
   "directories": {
     "test": "test"
