@@ -55,7 +55,7 @@ prefer to control which Truffle version your tests are run with, please see the 
 ### Network Configuration
 
 By default, solidity-coverage generates a stub `truffle.js` that accommodates its special gas needs and
-connects to a coverage-enabled fork of the ganache-cli client called **testrpc-sc** on port 8555. This special client ships with `solidity-coverage` - there's nothing extra to download. If your tests will run on truffle's development network
+connects to a coverage-enabled fork of the ganache-cli client called [**macaron-cli**](https://github.com/ripio/macaron-cli) on port 8555. This special client ships with `solidity-coverage` - there's nothing extra to download. If your tests will run on truffle's development network
 using a standard `truffle.js` and ganache-cli instance, you shouldn't have to do any configuration or launch the coverage client separately. If your tests depend on logic or special options added to `truffle.js` you should declare a coverage
 network there following the example below.
 
@@ -79,6 +79,28 @@ module.exports = {
   }
 };
 ```
+
+### Start Macaron
+
+Install macaron
+
+```
+npm i --save-dev macaron-cli
+```
+
+Start Macaron with solidity-coverage configuration
+
+```
+macaron-cli \
+  --emitFreeLogs true \
+  --gasLimit 0xfffffffffffff \
+  --allowUnlimitedContractSize true \
+  --debugTopics ./.solidity_coverage/.source_topics \
+  --dumpLogs ./.solidity_coverage/.all_events \
+  --port 8555
+
+```
+
 ### Options
 
 You can also create a `.solcover.js` config file in the root directory of your project and specify
@@ -88,7 +110,6 @@ additional options if necessary:
 ```javascript
 module.exports = {
     port: 6545,
-    testrpcOptions: '-p 6545 -u 0x54fd80d6ae7584d8e9a19fe1df43f04e5282cc43',
     testCommand: 'mocha --timeout 5000',
     norpc: true,
     dir: './secretDirectory',
@@ -100,11 +121,7 @@ module.exports = {
 
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
-| accounts | *Number* | 35 | Number of accounts to launch testrpc with. |
-| port   | *Number* | 8555 | Port to run testrpc on / have truffle connect to |
-| norpc | *Boolean* | false | Prevent solidity-coverage from launching its own testrpc. Useful if you are managing a complex test suite with a [shell script](https://github.com/OpenZeppelin/zeppelin-solidity/blob/ed872ca0a11c4926f8bb91dd103bea1378a3384c/scripts/coverage.sh) |
 | testCommand | *String* | `truffle test` |  Run an arbitrary test command. ex: `mocha --timeout 5000`. NB: Also set the `port` option to whatever your tests require (probably 8545). |
-| testrpcOptions | *String* | `--port 8555` | options to append to a command line invocation of testrpc. NB: Using this overwrites the defaults so always specify a port in this string *and* in the `port` option |
 | copyNodeModules | *Boolean* | false | :warning:  **DEPRECATED** use `copyPackages` instead :warning: Copies `node_modules` into the coverage environment. May significantly increase the time for coverage to complete if enabled. Useful if your contracts import solidity files from an npm installed package (and your node_modules is small). |
 | copyPackages | *Array* | `[]` | Copies specific `node_modules` packages into the coverage environment. May significantly reduce the time for coverage to complete compared to `copyNodeModules`. Useful if your contracts import solidity files from an npm installed package. |
 | skipFiles | *Array* | `['Migrations.sol']` | Array of contracts or folders (with paths expressed relative to the `contracts` directory) that should be skipped when doing instrumentation. `Migrations.sol` is skipped by default, and does not need to be added to this configuration option if it is used. |
@@ -120,7 +137,6 @@ Solutions to common issues people run into using this tool:
 + [Running out of memory (locally and in CI)](https://github.com/sc-forks/solidity-coverage/blob/master/docs/faq.md#running-out-of-memory-locally-and-in-ci)
 + [Running out of time (in mocha)](https://github.com/sc-forks/solidity-coverage/blob/master/docs/faq.md#running-out-of-time-in-mocha)
 + [Running on windows](https://github.com/sc-forks/solidity-coverage/blob/master/docs/faq.md#running-on-windows)
-+ [Running testrpc-sc on its own](https://github.com/sc-forks/solidity-coverage/blob/master/docs/faq.md#running-testrpc-sc-on-its-own)
 + [Running truffle as a local dependency](https://github.com/sc-forks/solidity-coverage/blob/master/docs/faq.md#running-truffle-as-a-local-dependency)
 + [Using alongside HDWalletProvider](https://github.com/sc-forks/solidity-coverage/blob/master/docs/faq.md#using-alongside-hdwalletprovider)
 + [Integrating into CI](https://github.com/sc-forks/solidity-coverage/blob/master/docs/faq.md#continuous-integration-installing-metacoin-on-travisci-with-coveralls)
